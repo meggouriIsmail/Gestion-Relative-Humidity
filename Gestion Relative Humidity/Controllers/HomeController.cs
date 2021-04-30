@@ -4,11 +4,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Gestion_Relative_Humidity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Gestion_Relative_Humidity.Controllers
 {
+    [Authorize(AuthenticationSchemes = Startup.CookieScheme)]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

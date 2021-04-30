@@ -18,6 +18,8 @@ namespace Gestion_Relative_Humidity
     public class Startup
     {
         private readonly IConfiguration configuration;
+        public const string CookieScheme = "mycookies";
+
         public Startup(IConfiguration configuration)
         {
             this.configuration = configuration;
@@ -33,6 +35,13 @@ namespace Gestion_Relative_Humidity
             {
                 options.UseSqlServer(configuration.GetConnectionString("Humidity"));
             });
+
+            services.AddAuthentication(CookieScheme)
+                .AddCookie(CookieScheme, options =>
+                {
+                    options.LoginPath = "/authentication/login/";
+                    options.AccessDeniedPath = "/home/index/";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +63,7 @@ namespace Gestion_Relative_Humidity
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
