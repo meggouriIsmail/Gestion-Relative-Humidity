@@ -35,6 +35,8 @@ namespace Gestion_Relative_Humidity
             {
                 options.UseSqlServer(configuration.GetConnectionString("Humidity"));
             });
+            
+            services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 
             services.AddAuthentication(CookieScheme)
                 .AddCookie(CookieScheme, options =>

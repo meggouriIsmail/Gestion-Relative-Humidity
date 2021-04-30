@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Gestion_RH.Models
+namespace Core.Entities
 {
     public class Bassin
     {
-        public Guid BassinId { get; set; }
+        public int BassinId { get; set; }
         public string NomBassin { get; set; }
     }
 }

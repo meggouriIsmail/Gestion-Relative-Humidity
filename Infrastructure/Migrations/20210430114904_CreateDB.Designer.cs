@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210429150036_FirstCreate")]
-    partial class FirstCreate
+    [Migration("20210430114904_CreateDB")]
+    partial class CreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,12 +21,12 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Gestion_RH.Models.Bassin", b =>
+            modelBuilder.Entity("Core.Entities.Bassin", b =>
                 {
-                    b.Property<Guid>("BassinId")
+                    b.Property<int>("BassinId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("NomBassin")
                         .HasColumnType("nvarchar(max)");
@@ -36,18 +36,18 @@ namespace Infrastructure.Migrations
                     b.ToTable("Bassins");
                 });
 
-            modelBuilder.Entity("Gestion_RH.Models.Observateur", b =>
+            modelBuilder.Entity("Core.Entities.Observateur", b =>
                 {
-                    b.Property<Guid>("ObservateurId")
+                    b.Property<int>("ObservateurId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("NomPrenomObservateur")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("StationId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("StationId")
+                        .HasColumnType("int");
 
                     b.HasKey("ObservateurId");
 
@@ -56,12 +56,12 @@ namespace Infrastructure.Migrations
                     b.ToTable("Observateurs");
                 });
 
-            modelBuilder.Entity("Gestion_RH.Models.RelativeHumidity", b =>
+            modelBuilder.Entity("Core.Entities.RelativeHumidity", b =>
                 {
-                    b.Property<Guid>("RelativeHumidityId")
+                    b.Property<int>("RelativeHumidityId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateObservation")
                         .HasColumnType("datetime2");
@@ -75,14 +75,14 @@ namespace Infrastructure.Migrations
                     b.Property<float>("Mou")
                         .HasColumnType("real");
 
-                    b.Property<Guid?>("ObservateurId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ObservateurId")
+                        .HasColumnType("int");
 
                     b.Property<float>("Sec")
                         .HasColumnType("real");
 
-                    b.Property<Guid?>("StationId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("StationId")
+                        .HasColumnType("int");
 
                     b.Property<float>("ThermometreMA")
                         .HasColumnType("real");
@@ -108,15 +108,15 @@ namespace Infrastructure.Migrations
                     b.ToTable("RelativeHumiditys");
                 });
 
-            modelBuilder.Entity("Gestion_RH.Models.Station", b =>
+            modelBuilder.Entity("Core.Entities.Station", b =>
                 {
-                    b.Property<Guid>("StationId")
+                    b.Property<int>("StationId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid?>("BassinId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("BassinId")
+                        .HasColumnType("int");
 
                     b.Property<string>("NomStation")
                         .HasColumnType("nvarchar(max)");
@@ -128,12 +128,12 @@ namespace Infrastructure.Migrations
                     b.ToTable("Stations");
                 });
 
-            modelBuilder.Entity("Gestion_RH.Models.User", b =>
+            modelBuilder.Entity("Core.Entities.User", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -146,22 +146,22 @@ namespace Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Gestion_RH.Models.Observateur", b =>
+            modelBuilder.Entity("Core.Entities.Observateur", b =>
                 {
-                    b.HasOne("Gestion_RH.Models.Station", "Station")
+                    b.HasOne("Core.Entities.Station", "Station")
                         .WithMany()
                         .HasForeignKey("StationId");
 
                     b.Navigation("Station");
                 });
 
-            modelBuilder.Entity("Gestion_RH.Models.RelativeHumidity", b =>
+            modelBuilder.Entity("Core.Entities.RelativeHumidity", b =>
                 {
-                    b.HasOne("Gestion_RH.Models.Observateur", "Observateur")
+                    b.HasOne("Core.Entities.Observateur", "Observateur")
                         .WithMany()
                         .HasForeignKey("ObservateurId");
 
-                    b.HasOne("Gestion_RH.Models.Station", "Station")
+                    b.HasOne("Core.Entities.Station", "Station")
                         .WithMany()
                         .HasForeignKey("StationId");
 
@@ -170,9 +170,9 @@ namespace Infrastructure.Migrations
                     b.Navigation("Station");
                 });
 
-            modelBuilder.Entity("Gestion_RH.Models.Station", b =>
+            modelBuilder.Entity("Core.Entities.Station", b =>
                 {
-                    b.HasOne("Gestion_RH.Models.Bassin", "Bassin")
+                    b.HasOne("Core.Entities.Bassin", "Bassin")
                         .WithMany()
                         .HasForeignKey("BassinId");
 

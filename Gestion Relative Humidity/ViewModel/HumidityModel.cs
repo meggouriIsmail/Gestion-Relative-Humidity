@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Core.Entities;
 
-namespace Core.Entities
+namespace Gestion_Relative_Humidity.ViewModel
 {
-    public class RelativeHumidity
+    public class HumidityModel
     {
-        public int RelativeHumidityId { get; set; }
         public float Sec { get; set; }
         public float Mou { get; set; }
         public float Hum { get; set; }
@@ -14,8 +17,8 @@ namespace Core.Entities
         public float ThermometreMA { get; set; }
         public float ThermometreMI { get; set; }
         public int Heur { get; set; }
-        public DateTime  DateObservation { get; set; }
-        public Station Station { get; set; }
-        public Observateur Observateur { get; set; }
+        public DateTime DateObservation { get; set; }
+        List<Station> Stations { get; }
+        List<Observateur> Observateurs { get; }
     }
 }

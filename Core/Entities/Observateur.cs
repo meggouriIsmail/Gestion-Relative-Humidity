@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Gestion_RH.Models
+namespace Core.Entities
 {
     public class Observateur
     {
-        public Guid ObservateurId { get; set; }
+        public int ObservateurId { get; set; }
         public string NomPrenomObservateur { get; set; }
         public Station Station { get; set; }
-}
+    }
 }

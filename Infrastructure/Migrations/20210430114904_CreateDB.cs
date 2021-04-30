@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class FirstCreate : Migration
+    public partial class CreateDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,8 @@ namespace Infrastructure.Migrations
                 name: "Bassins",
                 columns: table => new
                 {
-                    BassinId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
+                    BassinId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NomBassin = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -23,7 +24,8 @@ namespace Infrastructure.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -36,9 +38,10 @@ namespace Infrastructure.Migrations
                 name: "Stations",
                 columns: table => new
                 {
-                    StationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
+                    StationId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NomStation = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BassinId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    BassinId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,9 +58,10 @@ namespace Infrastructure.Migrations
                 name: "Observateurs",
                 columns: table => new
                 {
-                    ObservateurId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
+                    ObservateurId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NomPrenomObservateur = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StationId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    StationId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -74,7 +78,8 @@ namespace Infrastructure.Migrations
                 name: "RelativeHumiditys",
                 columns: table => new
                 {
-                    RelativeHumidityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
+                    RelativeHumidityId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Sec = table.Column<float>(type: "real", nullable: false),
                     Mou = table.Column<float>(type: "real", nullable: false),
                     Hum = table.Column<float>(type: "real", nullable: false),
@@ -85,8 +90,8 @@ namespace Infrastructure.Migrations
                     ThermometreMI = table.Column<float>(type: "real", nullable: false),
                     Heur = table.Column<int>(type: "int", nullable: false),
                     DateObservation = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StationId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ObservateurId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    StationId = table.Column<int>(type: "int", nullable: true),
+                    ObservateurId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

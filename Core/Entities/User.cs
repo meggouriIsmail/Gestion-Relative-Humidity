@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Gestion_RH.Models
+namespace Core.Entities
 {
     public class User
     {
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
 

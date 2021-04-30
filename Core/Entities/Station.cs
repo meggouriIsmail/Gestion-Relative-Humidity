@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Gestion_RH.Models
+namespace Core.Entities
 {
     public class Station
     {
-        public Guid StationId { get; set; }
+        public int StationId { get; set; }
         public string NomStation { get; set; }
         public Bassin Bassin { get; set; }
     }
