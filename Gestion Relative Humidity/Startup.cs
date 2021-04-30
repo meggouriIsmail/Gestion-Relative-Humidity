@@ -42,7 +42,7 @@ namespace Gestion_Relative_Humidity
                 .AddCookie(CookieScheme, options =>
                 {
                     options.LoginPath = "/authentication/login/";
-                    options.AccessDeniedPath = "/home/index/";
+                    options.AccessDeniedPath = "/humidity/index/";
                 });
         }
 

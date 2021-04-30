@@ -1,7 +1,7 @@
 ﻿@model Gestion_Relative_Humidity.ViewModel.HumidityModel
 
 @{
-    ViewData["Title"] = "Index";
+ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
@@ -12,6 +12,11 @@
     <div class="col-md-4">
         <form asp-action="Index">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StationId" class="control-label"></label>
+                <select asp-for="StationId" class="form-control" asp-items="@(new SelectList(Model.Stations, "StationId", "NomStation"))"></select>
+                <span asp-validation-for="StationId" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Sec" class="control-label"></label>
                 <input asp-for="Sec" class="form-control" />

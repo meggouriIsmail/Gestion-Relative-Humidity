@@ -47,7 +47,7 @@ namespace Gestion_Relative_Humidity.Controllers
                     }
                     else
                     {
-                        return Redirect("/");
+                        return Redirect("/humidity/index");
                     }
                 }
 
@@ -68,11 +68,14 @@ namespace Gestion_Relative_Humidity.Controllers
 
         private bool ValidateUser(UserModel model)
         {
-            var user = _user.Entity.GetAll().FirstOrDefault();
+            var users = _user.Entity.GetAll();
 
-            if (user.Email == model.Email && user.Password == model.Password)
+            foreach(var user in users)
             {
-                return true;
+                if (user.Email == model.Email && user.Password == model.Password)
+                {
+                    return true;
+                }
             }
             return false;
         }

@@ -13,18 +13,15 @@ using Microsoft.Extensions.Logging;
 
 namespace Gestion_Relative_Humidity.Controllers
 {
-    [Authorize(AuthenticationSchemes = Startup.CookieScheme)]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IHostingEnvironment _hosting;
-        private readonly IUnitOfWork<User> _user;
 
-        public HomeController(ILogger<HomeController> logger, IHostingEnvironment hosting, IUnitOfWork<User> user)
+        public HomeController(ILogger<HomeController> logger, IHostingEnvironment hosting)
         {
             _logger = logger;
             _hosting = hosting;
-            _user = user;
         }
 
         public IActionResult Index()

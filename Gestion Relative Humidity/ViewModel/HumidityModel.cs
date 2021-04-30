@@ -18,7 +18,9 @@ namespace Gestion_Relative_Humidity.ViewModel
         public float ThermometreMI { get; set; }
         public int Heur { get; set; }
         public DateTime DateObservation { get; set; }
-        List<Station> Stations { get; }
-        List<Observateur> Observateurs { get; }
+        public int StationId { get; set; }
+        public int ObservateurId { get; set; }
+        public List<Station> Stations { get; set; }
+        public List<Observateur> Observateurs { get; set; }
     }
 }
