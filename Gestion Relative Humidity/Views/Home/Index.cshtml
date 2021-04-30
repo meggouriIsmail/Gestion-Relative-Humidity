@@ -1,8 +1,83 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model Gestion_RH.Models.RelativeHumidity
+
+@{
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1>Index</h1>
+
+<h4>RelativeHumidity</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DateObservation" class="control-label">Date Observation</label>
+                <input asp-for="DateObservation" class="form-control" />
+                <span asp-validation-for="DateObservation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Heur" class="control-label">Heure</label>
+                <select asp-for="Heur" class="form-control" >
+                    <option>7</option>
+                    <option>14</option>
+                    <option>18</option>
+                    <option>21</option>
+                </select>
+                <span asp-validation-for="Heur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sec" class="control-label">Sec</label>
+                <input asp-for="Sec" class="form-control" />
+                <span asp-validation-for="Sec" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mou" class="control-label">Mouiller</label>
+                <input asp-for="Mou" class="form-control" />
+                <span asp-validation-for="Mou" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hum" class="control-label">Humidité</label>
+                <input asp-for="Hum" class="form-control" />
+                <span asp-validation-for="Hum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThermometreMin" class="control-label">Temperature Minimal</label>
+                <input asp-for="ThermometreMin" class="form-control" />
+                <span asp-validation-for="ThermometreMin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThermometreMax" class="control-label">Temperature Maximal</label>
+                <input asp-for="ThermometreMax" class="form-control" />
+                <span asp-validation-for="ThermometreMax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThermometreMoyMaxMin" class="control-label">Moyenne Temperature</label>
+                <input asp-for="ThermometreMoyMaxMin" class="form-control" />
+                <span asp-validation-for="ThermometreMoyMaxMin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThermometreMA" class="control-label">MA</label>
+                <input asp-for="ThermometreMA" class="form-control" />
+                <span asp-validation-for="ThermometreMA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThermometreMI" class="control-label">MI</label>
+                <input asp-for="ThermometreMI" class="form-control" />
+                <span asp-validation-for="ThermometreMI" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 </div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
