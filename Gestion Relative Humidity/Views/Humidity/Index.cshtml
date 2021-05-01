@@ -1,83 +1,128 @@
 ﻿@model Gestion_Relative_Humidity.ViewModel.HumidityModel
 
 @{
-ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<h4>HumidityModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Index">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="StationId" class="control-label"></label>
-                <select asp-for="StationId" class="form-control" asp-items="@(new SelectList(Model.Stations, "StationId", "NomStation"))"></select>
-                <span asp-validation-for="StationId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sec" class="control-label"></label>
-                <input asp-for="Sec" class="form-control" />
-                <span asp-validation-for="Sec" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mou" class="control-label"></label>
-                <input asp-for="Mou" class="form-control" />
-                <span asp-validation-for="Mou" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Hum" class="control-label"></label>
-                <input asp-for="Hum" class="form-control" />
-                <span asp-validation-for="Hum" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ThermometreMin" class="control-label"></label>
-                <input asp-for="ThermometreMin" class="form-control" />
-                <span asp-validation-for="ThermometreMin" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ThermometreMax" class="control-label"></label>
-                <input asp-for="ThermometreMax" class="form-control" />
-                <span asp-validation-for="ThermometreMax" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ThermometreMoyMaxMin" class="control-label"></label>
-                <input asp-for="ThermometreMoyMaxMin" class="form-control" />
-                <span asp-validation-for="ThermometreMoyMaxMin" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ThermometreMA" class="control-label"></label>
-                <input asp-for="ThermometreMA" class="form-control" />
-                <span asp-validation-for="ThermometreMA" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ThermometreMI" class="control-label"></label>
-                <input asp-for="ThermometreMI" class="form-control" />
-                <span asp-validation-for="ThermometreMI" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Heur" class="control-label"></label>
-                <input asp-for="Heur" class="form-control" />
-                <span asp-validation-for="Heur" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateObservation" class="control-label"></label>
-                <input asp-for="DateObservation" class="form-control" />
-                <span asp-validation-for="DateObservation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="jumbotron">
+    <h1>Index</h1>
+
+    <h4>HumidityModel</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Index" enctype="multipart/form-data" asp-antiforgery="true"  method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="StationId" class="control-label">Station</label>
+                    <label class="form-control">@Html.ViewData.Model.Stations.NomStation</label>
+                    <input asp-for="StationId" readonly class="form-control d-none" value="@Html.ViewData.Model.Stations.StationId">
+                    <span asp-validation-for="StationId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ObservateurId" class="control-label">Observateur</label>
+                    <select asp-for="ObservateurId" class="form-control" asp-items="@(new SelectList(Model.Observateurs, "ObservateurId", "NomPrenomObservateur"))"></select>
+                    <span asp-validation-for="ObservateurId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateObservation" class="control-label">Date Observation</label>
+                    <input asp-for="DateObservation" min="2017-04-01" class="form-control" />
+                    <span asp-validation-for="DateObservation" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Heur" class="control-label">Heure</label>
+                    <select asp-for="Heur" class="form-control">
+                        <option class="form-check-label">7</option>
+                        <option class="form-check-label">14</option>
+                        <option class="form-check-label">18</option>
+                        <option class="form-check-label">21</option>
+                    </select>
+                    <span asp-validation-for="Heur" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sec" class="control-label"></label>
+                    <input asp-for="Sec" class="form-control" />
+                    <span asp-validation-for="Sec" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Mou" class="control-label">Mouiller</label>
+                    <input asp-for="Mou" class="form-control" />
+                    <span asp-validation-for="Mou" class="text-danger"></span>
+                </div>
+                <div class="form-group d-none">
+                    <label asp-for="Hum" class="control-label">Humidité</label>
+                    <input asp-for="Hum" readonly class="form-control d-none" />
+                    <span asp-validation-for="Hum" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThermometreMin" class="control-label">Temperature Minimal</label>
+                    <input asp-for="ThermometreMin" disabled class="form-control" />
+                    <span asp-validation-for="ThermometreMin" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThermometreMax" class="control-label">Temperature Maximal</label>
+                    <input asp-for="ThermometreMax" disabled class="form-control" />
+                    <span asp-validation-for="ThermometreMax" class="text-danger"></span>
+                </div>
+                <div class="form-group d-none">
+                    <label asp-for="ThermometreMoyMaxMin" class="control-label">Moyenne Temperature</label>
+                    <input asp-for="ThermometreMoyMaxMin" readonly class="form-control" />
+                    <span asp-validation-for="ThermometreMoyMaxMin" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThermometreMA" class="control-label">Thermometre MA</label>
+                    <input asp-for="ThermometreMA" disabled class="form-control" />
+                    <span asp-validation-for="ThermometreMA" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThermometreMI" class="control-label">Thermometre MI</label>
+                    <input asp-for="ThermometreMI" disabled class="form-control" />
+                    <span asp-validation-for="ThermometreMI" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
+
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<script>
+    var now = new Date();
+    var month = (now.getMonth() + 1);
+    var day = now.getDate();
+    if (month < 10)
+        month = "0" + month;
+    if (day < 10)
+        day = "0" + day;
+    var today = now.getFullYear() + '-' + month + '-' + day;
+    document.getElementById("DateObservation").defaultValue = today;
+    var min = document.getElementById("ThermometreMin");
+    var max = document.getElementById("ThermometreMax");
+    var mi = document.getElementById("ThermometreMI");
+    var ma = document.getElementById("ThermometreMA");
+    var hr = document.getElementById("Heur");
+    hr.addEventListener("change", function () {
+        if (hr.value === "21") {
+            min.disabled = false;
+            max.disabled = false;
+            ma.disabled = false;
+            mi.disabled = false;
+        } else {
+            min.disabled = true;
+            max.disabled = true;
+            ma.disabled = true;
+            mi.disabled = true;
 
+        }
+    })
+
+
+</script>
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/jquery/jquery.js"></script>
+    <script src="~/twitter-bootstrap/js/bootstrap.js"></script>
+    <script src="~/js/script.js"></script>
 }

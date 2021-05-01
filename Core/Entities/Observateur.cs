@@ -7,5 +7,6 @@ namespace Core.Entities
         public int ObservateurId { get; set; }
         public string NomPrenomObservateur { get; set; }
         public Station Station { get; set; }
+        public int StationId { get; set; }
     }
 }

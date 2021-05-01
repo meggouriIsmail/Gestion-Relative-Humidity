@@ -14,15 +14,15 @@ namespace Gestion_Relative_Humidity.Controllers
     [Authorize(AuthenticationSchemes = Startup.CookieScheme)]
     public class HumidityController : Controller
     {
-        private readonly IHostingEnvironment _hosting;
         private readonly IUnitOfWork<User> _user;
         private readonly IUnitOfWork<Station> _station;
+        private readonly IUnitOfWork<Observateur> _observateur;
 
-        public HumidityController(IHostingEnvironment hosting, IUnitOfWork<User> user, IUnitOfWork<Station> station)
+        public HumidityController(IUnitOfWork<User> user, IUnitOfWork<Station> station, IUnitOfWork<Observateur> observateur)
         {
-            _hosting = hosting;
             _user = user;
             _station = station;
+            _observateur = observateur;
         }
 
         [Authorize(AuthenticationSchemes = Startup.CookieScheme)]
@@ -30,21 +30,49 @@ namespace Gestion_Relative_Humidity.Controllers
         {
             var model = new HumidityModel
             {
+                Observateurs = FillSelectListObservateurs(),
                 Stations = FillSelectList()
             };
 
             return View(model);
         }
+
+        [HttpPost]
+        public IActionResult Index(HumidityModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var md = model;
+
+                return Redirect("/home/index");
+            } 
+            else
+            {
+                var models = new HumidityModel
+                {
+                    Observateurs = FillSelectListObservateurs(),
+                    Stations = FillSelectList()
+                };
+                return View(models);
+            }
+        }
+
         public IActionResult Station()
         {
             return View(_station.Entity.GetAll());
         }
 
-        List<Station> FillSelectList()
+        Station FillSelectList()
         {
-            var stations = _station.Entity.GetAll().ToList();
-            stations.Insert(0, new Station { StationId = -1, NomStation = "--- Please select an author ---" });
+            var stations = _station.Entity.GetById(2);
             return stations;
+        }
+
+        List<Observateur> FillSelectListObservateurs()
+        {
+            var observateurs = _observateur.Entity.GetAll();
+            List<Observateur> obsevs = observateurs.Where(obs => obs.StationId == 2).ToList();
+            return obsevs;
         }
     }
 }
