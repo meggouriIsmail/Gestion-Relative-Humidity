@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Core.Entities;
 using Core.Interfaces;
 using Gestion_Relative_Humidity.ViewModel;
@@ -71,9 +72,8 @@ namespace Gestion_Relative_Humidity.Controllers
                     ObservateurId = model.ObservateurId,
                     StationId = model.StationId,
                 };
-                //_humidity.Entity.Insert(humidity);
-                //_humidity.Save();
-                
+                _humidity.Entity.Insert(humidity);
+                _humidity.Save();
                 Logout();
                 return Redirect("#");
             } 
