@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System;clening
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Core.Entities;
-using Core.Interfaces;
 using Gestion_Relative_Humidity.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
