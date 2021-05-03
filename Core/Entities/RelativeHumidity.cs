@@ -15,7 +15,9 @@ namespace Core.Entities
         public float ThermometreMI { get; set; }
         public int Heur { get; set; }
         public DateTime  DateObservation { get; set; }
-        public Station Station { get; set; }
-        public Observateur Observateur { get; set; }
+        public Station Stations { get; set; }
+        public int StationId { get; set; }
+        public Observateur Observateurs { get; set; }
+        public int ObservateurId { get; set; }
     }
 }
