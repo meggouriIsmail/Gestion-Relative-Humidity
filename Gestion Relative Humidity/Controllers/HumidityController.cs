@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
@@ -30,8 +31,8 @@ namespace Gestion_Relative_Humidity.Controllers
         {
             var model = new HumidityModel
             {
-                Observateurs = FillSelectListObservateurs(),
-                Stations = FillSelectList()
+                Stations = FillSelectList(),
+                Observateurs = FillSelectListObservateurs()
             };
 
             return View(model);
@@ -43,7 +44,6 @@ namespace Gestion_Relative_Humidity.Controllers
             if (ModelState.IsValid)
             {
                 var md = model;
-
                 return Redirect("/home/index");
             } 
             else
@@ -64,14 +64,19 @@ namespace Gestion_Relative_Humidity.Controllers
 
         Station FillSelectList()
         {
-            var stations = _station.Entity.GetById(2);
-            return stations;
+            var stations = _station.Entity.GetAll();
+            var userClaims = HttpContext.User.Claims.ToList();
+            var email = userClaims[0].Value;
+            var station = stations.First(st => st.NomStation == email);
+            return station;
         }
 
         List<Observateur> FillSelectListObservateurs()
         {
+            var station = FillSelectList();
+
             var observateurs = _observateur.Entity.GetAll();
-            List<Observateur> obsevs = observateurs.Where(obs => obs.StationId == 2).ToList();
+            List<Observateur> obsevs = observateurs.Where(obs => obs.StationId == station.StationId).ToList();
             return obsevs;
         }
     }

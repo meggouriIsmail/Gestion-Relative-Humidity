@@ -35,7 +35,7 @@ namespace Gestion_Relative_Humidity.Controllers
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim("user", model.Email),
+                        new Claim(ClaimTypes.Email, model.Email),
                         new Claim("role", "user")
                     };
 
