@@ -40,10 +40,20 @@ namespace Gestion_Relative_Humidity.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = Startup.CookieScheme)]
         public IActionResult Index(HumidityModel model)
         {
             if (ModelState.IsValid)
             {
+                float Moyenne()
+                {
+                    if (model.ThermometreMin==0 && model.ThermometreMax == 0)
+                    {
+                        return 0;
+                    }
+                    return (model.ThermometreMin + model.ThermometreMax) / 2;
+                }
+
                 var psySI = new Psychrometrics(UnitSystem.SI);
                 RelativeHumidity humidity = new RelativeHumidity
                 {
@@ -54,14 +64,14 @@ namespace Gestion_Relative_Humidity.Controllers
                     Hum = (int)(psySI.GetRelHumFromTWetBulb(model.Sec, model.Mou, 101050.024) * 100),
                     ThermometreMA = model.ThermometreMA,
                     ThermometreMax = model.ThermometreMax,
-                    ThermometreMoyMaxMin = model.ThermometreMoyMaxMin,
+                    ThermometreMoyMaxMin = Moyenne(),
                     ThermometreMin = model.ThermometreMin,
                     ThermometreMI = model.ThermometreMI,
                     ObservateurId = model.ObservateurId,
                     StationId = model.StationId,
                 };
-                _humidity.Entity.Insert(humidity);
-                _humidity.Save();
+                //_humidity.Entity.Insert(humidity);
+                //_humidity.Save();
                 return Redirect("/home/index");
             } 
             else
@@ -73,11 +83,6 @@ namespace Gestion_Relative_Humidity.Controllers
                 };
                 return View(models);
             }
-        }
-
-        public IActionResult Station()
-        {
-            return View(_station.Entity.GetAll());
         }
 
         Station FillSelectList()
