@@ -4,6 +4,7 @@ using System.Linq;
 using Core.Entities;
 using Core.Interfaces;
 using Gestion_Relative_Humidity.ViewModel;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PsychroLib;
@@ -72,7 +73,9 @@ namespace Gestion_Relative_Humidity.Controllers
                 };
                 //_humidity.Entity.Insert(humidity);
                 //_humidity.Save();
-                return Redirect("/home/index");
+                
+                Logout();
+                return Redirect("#");
             } 
             else
             {
@@ -83,6 +86,11 @@ namespace Gestion_Relative_Humidity.Controllers
                 };
                 return View(models);
             }
+        }
+
+        public void Logout()
+        {
+            HttpContext.SignOutAsync();
         }
 
         Station FillSelectList()

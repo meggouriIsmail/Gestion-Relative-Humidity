@@ -71,7 +71,7 @@ namespace Gestion_Relative_Humidity
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=humidity}/{action=Index}/{id?}");
             });
         }
     }

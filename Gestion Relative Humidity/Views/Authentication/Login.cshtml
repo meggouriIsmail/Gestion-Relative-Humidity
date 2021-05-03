@@ -9,19 +9,19 @@
 
     <!-- //particles -->
     <div class="w3ls-pos">
-        <h1>Particles Login Form</h1>
+        <h1 style="text-align: center;color: #fff;">Particles Login Form</h1>
         <div class="w3ls-login box">
             <!-- form starts here -->
             <form asp-action="Login" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <div class="agile-field-txt">
-                    <input asp-for="Email" type="text" placeholder="info@example.com" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <input asp-for="Email" type="text" placeholder="Email" />
+                    <span asp-validation-for="Email" class="text-light bg-warning"></span>
                 </div>
                 <div class="agile-field-txt">
                     <input asp-for="Password" placeholder="******" id="myInput" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <span asp-validation-for="Password" class="text-light bg-warning"></span>
                     <br />
                 </div>
                 <div class="w3ls-bot">
@@ -32,32 +32,34 @@
         <!-- //form ends here -->
         <!--copyright-->
         <div class="copy-wthree">
-            <p>
-                © 2018 Particles Login Form. All Rights Reserved | Design by
-                <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+            <p style="color: #adb2b7; text-align:center;">
+                © @DateTime.Now.Year All Rights Reserved | Developed by
+                <a style="color: #adb2b7;" asp-action="Contact" asp-controller="Home" target="_blank">AM_MG</a>
             </p>
         </div>
         <!--//copyright-->
     </div>
 </div>
-<style>
-    body {
-        overflow: hidden;
-    }
-    .absImage {
-        height: 100vh;
-        width: 100%;
-    }
+  <style>
+      body {
+          overflow: hidden;
+      }
 
-    .content {
-        position: absolute;
-        top: 5%;
-        left: 50%;
-        transform: translate(-50%);
-        color: #fbfbfb;
-        z-index: 10;
-    }
-</style>
+      .absImage {
+          height: 100vh;
+          width: 100%;
+      }
+
+      .content {
+          position: absolute;
+          top: 5%;
+          left: 50%;
+          transform: translate(-50%);
+          color: #fbfbfb;
+          z-index: 10;
+      }
+
+  </style>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

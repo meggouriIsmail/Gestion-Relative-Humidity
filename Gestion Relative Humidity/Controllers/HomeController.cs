@@ -18,7 +18,7 @@ namespace Gestion_Relative_Humidity.Controllers
             _hosting = hosting;
         }
 
-        public IActionResult Index()
+        public IActionResult Contact()
         {
             return View();
         }

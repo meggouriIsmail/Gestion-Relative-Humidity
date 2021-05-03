@@ -92,7 +92,6 @@ video {
     border: 0;
     font-size: 100%;
     font: inherit;
-    vertical-align: baseline;
 }
 
 article,
@@ -219,14 +218,14 @@ img {
 body {
     font-size: 100%;
     font-family: 'Poppins', sans-serif;
-    text-align: center;
     position: relative;
 }
 
 .w3ls-pos {
     position: absolute;
     top: 40px;
-    left: 29%;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 .w3ls-login {
@@ -250,11 +249,8 @@ h1 {
     font-size: 2.8em;
     font-weight: 300;
     text-transform: capitalize;
-    color: #fff;
-    text-shadow: 1px 1px 1px #000;
     letter-spacing: 2px;
     margin: 1.2em 1vw;
-    text-align: center;
 }
 
 .w3ls-login form {
@@ -409,6 +405,7 @@ label.check {
 
 @media(max-width:900px) {
     .w3ls-pos {
+        transform: translate(0);
         left: 16%;
     }
 }

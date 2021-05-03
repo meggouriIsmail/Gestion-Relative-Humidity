@@ -59,12 +59,6 @@ namespace Gestion_Relative_Humidity.Controllers
             return View();
         }
 
-        public IActionResult Logout()
-        {
-            HttpContext.SignOutAsync();
-            return RedirectToAction("index", "home");
-        }
-
         private bool ValidateUser(UserModel model)
         {
             var users = _user.Entity.GetAll();
