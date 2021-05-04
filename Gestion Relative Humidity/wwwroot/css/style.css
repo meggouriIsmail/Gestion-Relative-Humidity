@@ -246,7 +246,7 @@ body {
 }
 
 h1 {
-    font-size: 2.8em;
+    font-size: 1.5em;
     font-weight: 300;
     text-transform: capitalize;
     letter-spacing: 2px;
@@ -438,9 +438,7 @@ label.check {
 }
 
 @media(max-width:480px) {
-    h1 {
-        font-size: 7vw;
-    }
+  
     .w3ls-login form {
         padding: 7.5vw;
     }
