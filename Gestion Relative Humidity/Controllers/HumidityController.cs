@@ -56,14 +56,13 @@ namespace Gestion_Relative_Humidity.Controllers
                     return (model.ThermometreMin + model.ThermometreMax) / 2;
                 }
 
-                var psySI = new Psychrometrics(UnitSystem.SI);
                 RelativeHumidity humidity = new RelativeHumidity
                 {
                     DateObservation = model.DateObservation,
                     Heur = model.Heur,
                     Sec = model.Sec,
                     Mou = model.Mou,
-                    Hum = (int)(psySI.GetRelHumFromTWetBulb(model.Sec, model.Mou, 101050.024) * 100),
+                    Hum = CalculationHumidity(model),
                     ThermometreMA = model.ThermometreMA,
                     ThermometreMax = model.ThermometreMax,
                     ThermometreMoyMaxMin = Moyenne(),
@@ -86,6 +85,17 @@ namespace Gestion_Relative_Humidity.Controllers
                 };
                 return View(models);
             }
+        }
+
+        private float CalculationHumidity(HumidityModel model)
+        {
+            var psySI = new Psychrometrics(UnitSystem.SI);
+            var Hums = _humidity.Entity.GetAll();
+            float Hum = Hums.FirstOrDefault(hm => hm.Sec == model.Sec && hm.Mou == model.Mou) == null ? 0 : Hums.FirstOrDefault(hm => hm.Sec == model.Sec && hm.Mou == model.Mou).Hum;
+            if (Hum == 0)
+                return (int)(psySI.GetRelHumFromTWetBulb(model.Sec, model.Mou, 101050.024) * 100);
+
+            return Hum;
         }
 
         public void Logout()
