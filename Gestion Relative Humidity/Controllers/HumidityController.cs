@@ -71,8 +71,8 @@ namespace Gestion_Relative_Humidity.Controllers
                     ObservateurId = model.ObservateurId,
                     StationId = model.StationId,
                 };
-                _humidity.Entity.Insert(humidity);
-                _humidity.Save();
+                //_humidity.Entity.Insert(humidity);
+                //_humidity.Save();
                 Logout();
                 return Redirect("#");
             } 

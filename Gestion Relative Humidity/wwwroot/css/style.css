@@ -90,8 +90,6 @@ video {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
-    font: inherit;
 }
 
 article,
@@ -223,7 +221,7 @@ body {
 
 .w3ls-pos {
     position: absolute;
-    top: 40px;
+    top: 0;
     left: 50%;
     transform: translate(-50%);
 }
@@ -245,12 +243,11 @@ body {
     justify-content: center;
 }
 
-h1 {
-    font-size: 1.5em;
+.hed1 {
+    font-size: 1.2em;
     font-weight: 300;
     text-transform: capitalize;
     letter-spacing: 2px;
-    margin: 1.2em 1vw;
 }
 
 .w3ls-login form {
@@ -397,11 +394,6 @@ label.check {
     }
 }
 
-@media(max-width:1024px) {
-    h1 {
-        font-size: 4.5vw;
-    }
-}
 
 @media(max-width:900px) {
     .w3ls-pos {
@@ -411,7 +403,7 @@ label.check {
 }
 
 @media(max-width:800px) {
-    h1 {
+    .hed1 {
         font-size: 5vw;
     }
     .w3ls-pos {
@@ -451,7 +443,7 @@ label.check {
 }
 
 @media(max-width:320px) {
-    h1 {
+    .hhed1 {
         font-size: 1.8em;
     }
     .w3ls-login form {
