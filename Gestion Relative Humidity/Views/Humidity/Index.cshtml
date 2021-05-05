@@ -18,6 +18,11 @@
             <form asp-action="Index" enctype="multipart/form-data" asp-antiforgery="true" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
+                    <label asp-for="DateObservation" class="control-label">Date Observation</label>
+                    <input asp-for="DateObservation" readonly min="2017-04-01" class="form-control" />
+                    <span asp-validation-for="DateObservation" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <label asp-for="StationId" class="control-label">Station</label>
                     <label class="form-control">@Html.ViewData.Model.Stations.NomStation</label>
                     <input asp-for="StationId" readonly class="form-control d-none" value="@Html.ViewData.Model.Stations.StationId">
@@ -27,11 +32,6 @@
                     <label asp-for="ObservateurId" class="control-label">Observateur</label>
                     <select asp-for="ObservateurId" class="form-control" asp-items="@(new SelectList(Model.Observateurs, "ObservateurId", "NomPrenomObservateur"))"></select>
                     <span asp-validation-for="ObservateurId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="DateObservation" class="control-label">Date Observation</label>
-                    <input asp-for="DateObservation" min="2017-04-01" class="form-control" />
-                    <span asp-validation-for="DateObservation" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Heur" class="control-label">Heure</label>
@@ -59,14 +59,14 @@
                     <span asp-validation-for="Hum" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="ThermometreMin" class="control-label">Temperature Minimal</label>
-                    <input asp-for="ThermometreMin" disabled class="form-control" />
-                    <span asp-validation-for="ThermometreMin" class="text-danger"></span>
-                </div>
-                <div class="form-group">
                     <label asp-for="ThermometreMax" class="control-label">Temperature Maximal</label>
                     <input asp-for="ThermometreMax" disabled class="form-control" />
                     <span asp-validation-for="ThermometreMax" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThermometreMin" class="control-label">Temperature Minimal</label>
+                    <input asp-for="ThermometreMin" disabled class="form-control" />
+                    <span asp-validation-for="ThermometreMin" class="text-danger"></span>
                 </div>
                 <div class="form-group d-none">
                     <label asp-for="ThermometreMoyMaxMin" class="control-label">Moyenne Temperature</label>
@@ -84,7 +84,7 @@
                     <span asp-validation-for="ThermometreMI" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" id="btnEnvoyer" value="Envoyer ارسل" class="btn btn-primary" />
+                    <input type="submit" id="btnEnvoyer" value="Envoyer" class="btn btn-success pt-2 pb-2 pl-4 pr-4" />
                 </div>
             </form>
         </div>

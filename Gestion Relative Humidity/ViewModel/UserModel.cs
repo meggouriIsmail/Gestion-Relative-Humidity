@@ -8,10 +8,10 @@ namespace Gestion_Relative_Humidity.ViewModel
 {
     public class UserModel
     {
-        [Required]
+        [Required(ErrorMessage = "Invalide Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Invalide Mot de Passe")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

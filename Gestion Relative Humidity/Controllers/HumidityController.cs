@@ -108,7 +108,7 @@ namespace Gestion_Relative_Humidity.Controllers
             var stations = _station.Entity.GetAll();
             var userClaims = HttpContext.User.Claims.ToList();
             var email = userClaims[0].Value;
-            var station = stations.First(st => st.NomStation == email);
+            var station = stations.First(st => st.NomStation.ToLower() == email.ToLower());
             return station;
         }
 

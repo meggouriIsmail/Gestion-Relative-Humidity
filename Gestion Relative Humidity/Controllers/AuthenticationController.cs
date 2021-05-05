@@ -65,7 +65,7 @@ namespace Gestion_Relative_Humidity.Controllers
 
             foreach(var user in users)
             {
-                if (user.Email == model.Email && user.Password == model.Password)
+                if (user.Email.ToLower() == model.Email.ToLower() && user.Password == model.Password)
                 {
                     return true;
                 }
