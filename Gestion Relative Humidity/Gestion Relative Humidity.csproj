@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Gestion_Relative_Humidity</RootNamespace>
+    <UserSecretsId>50466d84-2340-450c-b931-555f9020d606</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
