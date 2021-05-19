@@ -46,7 +46,7 @@ namespace Gestion_Relative_Humidity.Controllers
                     }
                     else
                     {
-                        return Redirect("/humidity/index");
+                        return Redirect("/GRH/index");
                     }
                 }
 

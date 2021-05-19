@@ -42,7 +42,7 @@ namespace Gestion_Relative_Humidity
                 .AddCookie(CookieScheme, options =>
                 {
                     options.LoginPath = "/authentication/login/";
-                    options.AccessDeniedPath = "/humidity/index/";
+                    options.AccessDeniedPath = "/GRH/index/";
                 });
         }
 
@@ -71,7 +71,7 @@ namespace Gestion_Relative_Humidity
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=humidity}/{action=Index}/{id?}");
+                    pattern: "{controller=GRH}/{action=Index}/{id?}");
             });
         }
     }

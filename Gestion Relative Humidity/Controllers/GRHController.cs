@@ -13,13 +13,13 @@ using PsychroLib;
 namespace Gestion_Relative_Humidity.Controllers
 {
     [Authorize(AuthenticationSchemes = Startup.CookieScheme)]
-    public class HumidityController : Controller
+    public class GRHController : Controller
     {
         private readonly IUnitOfWork<Station> _station;
         private readonly IUnitOfWork<Observateur> _observateur;
         private readonly IUnitOfWork<RelativeHumidity> _humidity;
 
-        public HumidityController(IUnitOfWork<User> user,
+        public GRHController(IUnitOfWork<User> user,
             IUnitOfWork<Station> station,
             IUnitOfWork<Observateur> observateur,
             IUnitOfWork<RelativeHumidity> humidity)
