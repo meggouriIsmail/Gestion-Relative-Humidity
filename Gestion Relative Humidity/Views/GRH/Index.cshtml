@@ -121,8 +121,16 @@
 
         }
     });
-    var btn = document.getElementById("btnEnvoyer").addEventListener("click", function () {
-        alert("Veuillez Patienter!");
+    var btn = document.getElementById("btnEnvoyer");
+    var sec = document.getElementById("Sec");
+    var mou = document.getElementById("Mou");
+    btn.addEventListener("click", function (e) {
+        if (parseFloat(sec.value) < parseFloat(mou.value)) {
+            alert("Le Sec doit étre superieure au Mouiller!");
+            e.preventDefault();
+        } else {
+            alert("Click OK");
+        }
     });
 
 

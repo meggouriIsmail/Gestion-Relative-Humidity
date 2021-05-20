@@ -390,6 +390,7 @@ label.check {
 
 @media screen and (max-width: 1080px) {
     .w3ls-pos {
+        transform: translate(0);
         left: 22%;
     }
 }
